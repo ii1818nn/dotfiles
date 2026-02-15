@@ -1,0 +1,5 @@
+roles: [ ]
+
+collections:
+  - name: geerlingguy.mac
+    version: "5.0.0"

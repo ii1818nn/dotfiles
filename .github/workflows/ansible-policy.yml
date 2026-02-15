@@ -1,0 +1,29 @@
+name: 'ansible policy'
+
+on:
+  pull_request:
+    paths:
+      - ansible/**
+    branches:
+      - main
+
+jobs:
+  ansible-policy:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./ansible
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: '3.12.0'
+
+      - run: pip install -r requirements.txt
+
+      - run: ansible-lint playbooks/**/*.yml
+
+      - run: ansible-playbook playbooks/**/*.yml --syntax-check -i localhost, -u policy

@@ -1,0 +1,19 @@
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "main"
+    assignees:
+      - "ii1818nn"
+
+  - package-ecosystem: "pip"
+    directories:
+      - "/ansible"
+    schedule:
+      interval: "weekly"
+    target-branch: "main"
+    assignees:
+      - "ii1818nn"

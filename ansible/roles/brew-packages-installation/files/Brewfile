@@ -1,0 +1,15 @@
+brew "htop"
+brew "wget"
+
+brew "pyenv"
+brew "tfenv"
+brew "tflint"
+
+cask "font-jetbrains-mono-nerd-font"
+
+cask "telegram-desktop"
+cask "google-chrome"
+
+cask "intellij-idea"
+cask "webstorm"
+cask "datagrip"

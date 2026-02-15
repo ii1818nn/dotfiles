@@ -1,0 +1,11 @@
+### IntelliJ IDEA ###
+**/.idea
+
+### VS Code ###
+.vscode/
+
+### Ansible
+*.ini
+
+### MacOS
+.DS_Store

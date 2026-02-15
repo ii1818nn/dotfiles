@@ -1,0 +1,36 @@
+- name: Micro is installed
+  ansible.builtin.include_role:
+    name: geerlingguy.mac.homebrew
+  vars:
+    homebrew_installed_packages:
+      - micro
+
+- name: Dotfiles are copied
+  ansible.builtin.copy:
+    src: .
+    dest: "{{ ansible_facts.env.HOME }}"
+    mode: 0644
+
+- name: Catppuccin repository is cloned
+  ansible.builtin.git:
+    repo: https://github.com/catppuccin/micro.git
+    dest: /tmp/catppuccin-micro
+    update: true
+
+- name: Ensure micro config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.config/micro/colorschemes"
+    state: directory
+    mode: 0755
+
+- name: Catppuccin color schemes is copied
+  ansible.builtin.copy:
+    src: /tmp/catppuccin-micro/themes/
+    dest: "{{ ansible_facts.env.HOME }}/.config/micro/colorschemes"
+    remote_src: true
+    mode: 0755
+
+- name: Catppuccin repository is removed
+  ansible.builtin.file:
+    path: /tmp/catppuccin-micro
+    state: absent

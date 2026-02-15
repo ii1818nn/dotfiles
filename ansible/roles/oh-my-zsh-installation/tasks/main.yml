@@ -1,0 +1,38 @@
+- name: Oh my zsh is installed
+  ansible.builtin.shell:
+    cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
+    executable: /bin/zsh
+  args:
+    creates: "{{ ansible_facts.env.HOME }}/.nvm/nvm.sh"
+
+- name: Ensure themes directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.oh-my-zsh/themes/catppuccin-flavors"
+    state: directory
+
+- name: Catppuccin zsh repository s cloned
+  ansible.builtin.git:
+    repo: https://github.com/JannoTjarks/catppuccin-zsh.git
+    dest: "{{ ansible_facts.env.HOME }}/catppuccin-zsh"
+    update: yes
+
+- name: Dotfiles are copied
+  ansible.builtin.copy:
+    src: .
+    dest: "{{ ansible_facts.env.HOME }}"
+    mode: 0644
+
+- name: Catppuccin theme is symlinked
+  ansible.builtin.file:
+    src: "{{ ansible_facts.env.HOME }}/catppuccin-zsh/catppuccin.zsh-theme"
+    dest: "{{ ansible_facts.env.HOME }}/.oh-my-zsh/themes/catppuccin.zsh-theme"
+    state: link
+    force: yes
+
+- name: Catppuccin flavor themes are symlinked
+  ansible.builtin.shell: |
+    for theme in {{ ansible_facts.env.HOME }}/catppuccin-zsh/catppuccin-flavors/*; do
+      ln -sf "$theme" "{{ ansible_facts.env.HOME }}/.oh-my-zsh/themes/catppuccin-flavors/"
+    done
+  args:
+    executable: /bin/zsh

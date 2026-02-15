@@ -1,0 +1,16 @@
+- name: Brewfile exists
+  ansible.builtin.copy:
+    src: "Brewfile"
+    dest: "/tmp/Brewfile"
+
+- name: Brewfile packages are installed
+  ansible.builtin.include_role:
+    name: geerlingguy.mac.homebrew
+  vars:
+    homebrew_use_brewfile: true
+    homebrew_brewfile_dir: '/tmp'
+
+- name: Brewfile is removed
+  ansible.builtin.file:
+    path: "/tmp/Brewfile"
+    state: absent

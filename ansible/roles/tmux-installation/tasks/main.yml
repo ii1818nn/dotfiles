@@ -1,0 +1,40 @@
+- name: Tmux is installed
+  ansible.builtin.include_role:
+    name: geerlingguy.mac.homebrew
+  vars:
+    homebrew_installed_packages:
+      - tmux
+
+- name: Ensure catppuccin plugin directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.config/tmux/plugins/catppuccin"
+    state: directory
+    mode: '0755'
+    recurse: yes
+
+- name: Catppuccin repository is cloned
+  ansible.builtin.git:
+    repo: https://github.com/catppuccin/tmux.git
+    dest: "{{ ansible_facts.env.HOME }}/.config/tmux/plugins/catppuccin/tmux"
+    update: true
+    force: true
+
+- name: Ensure TPM plugin directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.tmux/plugins"
+    state: directory
+    mode: '0755'
+    recurse: yes
+
+- name: TPM is cloned
+  ansible.builtin.git:
+    repo: https://github.com/tmux-plugins/tpm.git
+    dest: "{{ ansible_facts.env.HOME }}/.tmux/plugins/tpm"
+    update: true
+    force: true
+
+- name: Dotfiles are copied
+  ansible.builtin.copy:
+    src: .
+    dest: "{{ ansible_facts.env.HOME }}"
+    mode: 0644

@@ -1,0 +1,5 @@
+- name: Dotfiles are copied
+  ansible.builtin.copy:
+    src: .
+    dest: "{{ ansible_facts.env.HOME }}"
+    mode: 0644
