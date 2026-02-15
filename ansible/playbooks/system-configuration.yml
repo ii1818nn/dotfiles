@@ -5,6 +5,7 @@
     - zsh-configuration
     - brew-packages-installation
     - nvm-installation
+    - pyenv-installation
     - micro-installation
     - tmux-installation
     - thefuck-installation
