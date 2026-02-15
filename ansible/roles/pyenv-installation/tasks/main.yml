@@ -1,0 +1,12 @@
+- name: Pyenv is installed
+  ansible.builtin.include_role:
+    name: geerlingguy.mac.homebrew
+  vars:
+    homebrew_installed_packages:
+      - pyenv
+      -
+- name: Dotfiles are copied
+  ansible.builtin.copy:
+    src: .
+    dest: "{{ ansible_facts.env.HOME }}"
+    mode: 0644

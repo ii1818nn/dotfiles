@@ -4,6 +4,7 @@ brew "wget"
 brew "pyenv"
 brew "tfenv"
 brew "tflint"
+brew "zsh-autosuggestions"
 
 cask "font-jetbrains-mono-nerd-font"
 
