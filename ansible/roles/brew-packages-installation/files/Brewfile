@@ -1,16 +1,24 @@
 brew "htop"
 brew "wget"
 
+brew "lz4"
+brew "xcodes"
+
 brew "pyenv"
-brew "tfenv"
-brew "tflint"
 brew "zsh-autosuggestions"
 
 cask "font-jetbrains-mono-nerd-font"
 
-cask "telegram-desktop"
-cask "google-chrome"
-
 cask "intellij-idea"
 cask "webstorm"
 cask "datagrip"
+
+cask "vagrant"
+cask "docker-desktop"
+
+cask "telegram-desktop"
+cask "google-chrome"
+cask "discord"
+cask "slack"
+
+cask "prismlauncher"
