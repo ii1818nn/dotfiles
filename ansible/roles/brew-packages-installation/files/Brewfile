@@ -13,8 +13,7 @@ cask "intellij-idea"
 cask "webstorm"
 cask "datagrip"
 
-cask "vagrant"
-cask "docker-desktop"
+cask "qemu"
 
 cask "telegram-desktop"
 cask "google-chrome"
