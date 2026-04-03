@@ -1,7 +1,6 @@
 brew "htop"
 brew "wget"
 
-brew "lz4"
 brew "xcodes"
 
 brew "pyenv"
@@ -12,8 +11,6 @@ cask "font-jetbrains-mono-nerd-font"
 cask "intellij-idea"
 cask "webstorm"
 cask "datagrip"
-
-cask "qemu"
 
 cask "telegram-desktop"
 cask "google-chrome"
